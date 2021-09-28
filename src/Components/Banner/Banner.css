@@ -1,0 +1,67 @@
+.banner {
+  position: relative;
+  top: -15px;
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+  color: #fff;
+  box-shadow: inset 0px 800px 50px 0px rgba(0, 0, 0, 0.5);
+}
+.content {
+  position: relative;
+  color: #fff;
+  top: 220px;
+  width: 50%;
+  height: 300px;
+  margin: 15px;
+  margin-left: 25px;
+  /* z-index: -1; */
+}
+.movie-title {
+  font-size: 2.7rem;
+}
+.description {
+  width: 90%;
+  height: 70px;
+  font-size: 18px;
+  font-family: "Montserrat";
+  margin: 0 0 10px 0;
+  overflow-y: scroll;
+}
+.description::-webkit-scrollbar {
+  display: none;
+}
+.button-group {
+  margin-top: 20px;
+}
+.play,
+.watch {
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+.play {
+  width: 100px;
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+.watch {
+  width: 130px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+.play:hover {
+  background: rgba(255, 0, 0, 0.5);
+  color: #fff;
+  box-shadow: 0px 1px 10px 3px rgba(255, 0, 0, 0.4);
+}
+.watch:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: rgb(0, 0, 0);
+  box-shadow: 0px 1px 10px 3px rgba(255, 255, 255, 0.7);
+}

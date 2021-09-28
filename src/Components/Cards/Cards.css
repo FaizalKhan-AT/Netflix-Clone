@@ -1,0 +1,37 @@
+.cards {
+  position: relative;
+}
+.title {
+  margin-left: 15px;
+  color: #fff;
+  font-size: 2rem;
+  font-family: "Montserrat";
+  text-decoration: 3px underline red;
+}
+.card-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin: 20px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+.card {
+  height: 350px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.small-card {
+  height: 270px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.load {
+  color: #fff;
+}
+
+
