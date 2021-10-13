@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { image_url } from '../../constants/constants'
+import {useHistory} from 'react-router-dom'
+import {TrailerContext} from "../../store/Contexts"
 import './details.css'
-function DetailsBanner({post}) {
-	console.log(post)
+function DetailsBanner({post,genre}) {
+	const history = useHistory();
+	const {setMovieData,setGenre} = useContext(TrailerContext);
 	return (
 		<>
 			<div className="details-banner" >
@@ -13,7 +16,11 @@ function DetailsBanner({post}) {
         				<div className='desc-container'>
         					<p className="description">{post ? post.overview : "Loading..."}</p>
         				</div>
-        				<button className="play-btn">Play</button>
+        				<button className="play-btn" onClick={()=>{
+        					setMovieData(post)
+        					setGenre(genre)
+        					history.push('/watch')
+        				}}>Play</button>
 					</div> 
 					<div className='details-image' >
 						<img className='post-image'src={post ? image_url + post.poster_path : ''} alt="unable to load poster" />

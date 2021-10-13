@@ -185,7 +185,7 @@ p,
   }
   .nav-links li:hover {
     text-decoration: none;
-    background: gray;
+    background: rgba(163, 163,163, 0.6);
   }
   .mobile-list {
     display: block;
@@ -195,5 +195,8 @@ p,
   } 
   .mobile-list .search-cont:hover {
     background: none;
+  }
+  .icons {
+    pointer-events: none;
   }
 }

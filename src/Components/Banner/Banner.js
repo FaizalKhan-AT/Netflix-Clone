@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import './Banner.css'
-import Youtube from 'react-youtube'
+import {useHistory} from 'react-router-dom'
 import axios from '../../axiosConfig'
 import { API_KEY,image_url } from '../../constants/constants';
 import Skeleton from '@mui/material/Skeleton';
@@ -8,12 +8,15 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {TrailerContext} from '../../store/Contexts'
+
 
 function Banner() {
   const [Movie, setMovie] = useState()
-  const [Trailer, setTrailer] = useState('')
   const [error,setError] = useState(false);
-  
+  const history = useHistory()
+  const {setMovieData} = useContext(TrailerContext)
+
   useEffect(() => {
     axios
       .get(`trending/all/week?api_key=${API_KEY}&language=en-US`)
@@ -24,29 +27,8 @@ function Banner() {
       }).catch(err => {
         setError(true)
       })
-  }, [])
-  // function handlePlay(id) { 
-  //   axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
-  //     try {
-  //       if (response.data.results !== null) {
-  //         setTrailer(response.data.results[0].key)
-  //       }
-      
-  //     } catch (err) {
-  //       alert('No Trailer Available')
-        
-  //   }
-      
-  //   })
-  // }
-  
-  // const opts = {
-  //   height: '500',
-  //   width: '100%',
-  //   playerVars: {
-  //     autoplay: 1,
-  //   },
-  // }
+  }, []);
+
   return (
     <> 
     {error && <Alert action={
@@ -74,14 +56,14 @@ function Banner() {
 
         <div className="button-group">
             <button onClick={() => {
-              // handlePlay(Movie.id)
+              setMovieData(Movie && Movie)
+              history.push('/watch')
             }
             } className="play">Play</button>
           <button className="watch">&#43; Watch List</button>
         </div>
       </div>
       </div>
-      // {Trailer && <Youtube videoId={Trailer} opts={opts }/> }
     ): (
 
     <Skeleton sx={{ height: 500,bgcolor: 'grey.900' }} animation="wave" variant="rectangular" />

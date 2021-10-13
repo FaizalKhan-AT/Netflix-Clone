@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import Slider from 'react-elastic-carousel';
 import axios from '../../axiosConfig'
-import { API_KEY, image_url } from '../../constants/constants'
+import {image_url } from '../../constants/constants'
 import DetailsBanner from '../DetailsBanner/DetailsBanner'
-import YouTube from 'react-youtube'
 import Skeleton from '@mui/material/Skeleton';
 import './Cards.css'
 
@@ -21,7 +20,6 @@ function Cards({url, title, isSmall}) {
 
 
   const LoadingArray = [1,2,3,4,5,6]
-  const [Trailer, setTrailer] = useState("");
   const [Loading, setLoading] = useState(false)
   const [Posters, setPosters] = useState([])
   const [post,setPost] = useState()
@@ -37,35 +35,10 @@ function Cards({url, title, isSmall}) {
     }
   }, [url])
 
- // function handlePlay(id) {
- //   axios
- //     .get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
- //     .then((response) => {
- //       try {
- //         if (response.data.results !== null) {
- //           setTrailer(response.data.results[0].key);
- //         } 
- //         if(response.data.results === null) {
- //           alert("No Trailer Available.");
-        
- //         }
- //        }catch(err) {
- //         alert("No Trailer Available");
- //       }
-       
- //     });
- // }
    const handleClick = (post) => {
     setPost(post)
    }
-    const opts = {
-       height: "500",
-       width: "100%",
-       playerVars: {
-         autoplay: 1,
-       },
-    };
-  
+
     return (
       <div className="Cards">
         <div className="title">{title}</div>
@@ -98,8 +71,7 @@ function Cards({url, title, isSmall}) {
             })}
            </Slider> 
          </div>
-        {post && <DetailsBanner post={post}/>}
-       {/* { Trailer && <YouTube opts={opts} videoId={ Trailer}/>} */}
+        {post && <DetailsBanner genre={url} post={post}/>}
       </div>
     );
 }

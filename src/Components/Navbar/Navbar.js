@@ -7,18 +7,19 @@ import CloseIcon from  '@mui/icons-material/Close';
 
 function Navbar() {
  const history = useHistory()
- const navbarRef = useRef()
  const slideRef = useRef()
  const [icon, setIcon] = useState(true)
+ const [scrolled,setScrolled] = useState(false)
 
  const handleSlide = () => {
   slideRef.current.classList.toggle('slide-active')
  }
  const navScrolled = () => {   
-  if (window.scrollY > 50) {
-      navbarRef.current.classList.add('scrolled')
-    } else {
-      navbarRef.current.classList.remove('scrolled')
+    if (window.scrollY > 50) {
+      setScrolled(true)
+    } 
+    if (window.scrollY === 0) {
+     setScrolled(false)
     }
  }
 
@@ -29,9 +30,9 @@ function Navbar() {
   return () => {
     window.removeEventListener('scroll',navScrolled);
   }
- },[navbarRef])
+ },[scrolled])
   return (
-    <div  className="Navbar" ref={navbarRef}>
+    <div  className={scrolled ? "Navbar scrolled" : "Navbar"}>
       <div className="logo" onClick={()=>history.push('/')}>
         <img src="./assets/images/netflix logo.png" alt="Logo" />
       </div>
