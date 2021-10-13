@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router , Route} from 'react-router-dom';
+import {HashRouter as Router , Route} from 'react-router-dom';
 import Home from './Pages/Home' 
 import Contexts from './store/Contexts'
 import Watch from './Pages/watchPage' 
