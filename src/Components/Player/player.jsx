@@ -23,9 +23,8 @@ function Player() {
 	}
 	useEffect(() => {
 		setMovieInfo(movieData)
-		console.log(movieData)
 		handlePlay(movieData && movieData.id)
-	},[])
+	},[movieData])
  const opts = {
     height: '500',
     width: '100%',

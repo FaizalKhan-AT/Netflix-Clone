@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import './post.css'
 import axios from 'axios'
 import {TrailerContext} from "../../store/Contexts"
@@ -7,8 +8,9 @@ import {trending }  from '../../urls'
 
 
 function Post() {
-	const {genre} = React.useContext(TrailerContext)
+	const {genre,setMovieData} = React.useContext(TrailerContext)
 	const [data,setData] = useState([])
+	const history = useHistory()
 	React.useEffect(() => {
 		if(genre) {
 			try {				
@@ -39,7 +41,10 @@ function Post() {
 			{
 				data.map(post => {
 					return (
-						<div key={post.id} className="post-card">
+						<div key={post.id} className="post-card" onClick={() => {
+							setMovieData(post)
+							history.push('/watch')
+						}}>
 							<img className='card-image' src={post && image_url + post.poster_path} alt={post ? post.title : post.name} />
 							<div className='post-card-details'>								
 								<h4 className="post-title">
